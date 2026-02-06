@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        .chat-container {
+            width: 60%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+        .user {
+            color: blue;
+            margin-top: 10px;
+        }
+        .bot {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="chat-container">
+    <h2>Medical Chatbot 🩺</h2>
+
+    <div id="chat"></div>
+
+    <form id="chat-form">
+        <input type="text" id="msg" placeholder="Ask a medical question..." size="60" required />
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+<script>
+document.getElementById("chat-form").onsubmit = async function(e) {
+    e.preventDefault();
+
+    let msg = document.getElementById("msg").value;
+    let chat = document.getElementById("chat");
+
+    chat.innerHTML += `<div class="user"><b>You:</b> ${msg}</div>`;
+    document.getElementById("msg").value = "";
+
+    let response = await fetch("/get", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "msg=" + encodeURIComponent(msg)
+    });
+
+    let text = await response.text();
+    chat.innerHTML += `<div class="bot"><b>Bot:</b> ${text}</div>`;
+};
+</script>
+</body>
+</html>
