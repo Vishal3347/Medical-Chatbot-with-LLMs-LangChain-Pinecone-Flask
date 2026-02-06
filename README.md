@@ -1,6 +1,7 @@
 🩺 Medical Chatbot using RAG (LangChain + Pinecone + Flask)
 
 An end-to-end Medical Question Answering Chatbot built using Retrieval Augmented Generation (RAG).
+
 The chatbot answers medical questions based on uploaded PDF documents using vector search and a free local LLM (HuggingFace).
 
 🚀 Features
@@ -18,6 +19,7 @@ The chatbot answers medical questions based on uploaded PDF documents using vect
 ⚡ Real-time question answering
 
 🏗️ Project Architecture
+
 Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask/
 │
 ├── data/
@@ -53,15 +55,20 @@ Flask
 HTML/CSS
 
 ⚙️ Setup Instructions
+
 1️⃣ Clone the Repository
+
 git clone https://github.com/your-username/Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask.git
 cd Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask
 
 2️⃣ Create & Activate Conda Environment
+
 conda create -n medibot310 python=3.10 -y
+
 conda activate medibot310
 
 3️⃣ Install Dependencies
+
 pip install -r requirements.txt
 
 4️⃣ Environment Variables
@@ -69,8 +76,11 @@ pip install -r requirements.txt
 Create a .env file in the project root:
 
 PINECONE_API_KEY=your_pinecone_key_here
+
 OPENAI_API_KEY=dummy_value_not_used
+
 PINECONE_ENVIRONMENT=us-east-1
+
 PINECONE_INDEX_NAME=medical-chatbot
 
 
@@ -96,6 +106,7 @@ Generate embeddings
 Store vectors in Pinecone
 
 ▶️ Run the Application
+
 python app.py
 
 
