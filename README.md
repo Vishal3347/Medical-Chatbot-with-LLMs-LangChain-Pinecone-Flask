@@ -1,165 +1,99 @@
-🩺 Medical Chatbot using RAG (LangChain + Pinecone + Flask)
+Medical Chatbot using RAG (LangChain, Pinecone, Flask)
 
-An end-to-end Medical Question Answering Chatbot built using Retrieval Augmented Generation (RAG).
+Overview
 
-The chatbot answers medical questions based on uploaded PDF documents using vector search and a free local LLM (HuggingFace).
+This project is an end-to-end Medical Question Answering Chatbot built using Retrieval Augmented Generation (RAG). The chatbot answers medical questions by retrieving relevant information from medical PDF documents and generating responses using a free local language model.
 
-🚀 Features
+The application combines document retrieval, vector search, and a conversational interface to deliver accurate and context-aware medical responses.
 
-📄 PDF ingestion & processing
+Key Features
 
-🔍 Semantic search using Pinecone
+PDF-based medical knowledge ingestion
+Semantic search using vector embeddings
+Retrieval Augmented Generation (RAG) pipeline
+Free local LLM using HuggingFace (no OpenAI billing)
+Flask-based web interface
+Real-time medical question answering
 
-🧠 RAG pipeline with LangChain
+Project Structure
 
-🤖 Free local LLM (no OpenAI billing required)
+data
+Contains medical PDF documents used for knowledge retrieval
 
-🌐 Flask web interface
+src
+Contains helper functions and prompt configuration
 
-⚡ Real-time question answering
+templates
+Contains the HTML frontend for the chatbot
 
-🏗️ Project Architecture
+app.py
+Main Flask application
 
-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask/
-│
-├── data/
-│   └── Medical_book.pdf
-│
-├── src/
-│   ├── helper.py          # PDF loading, chunking, embeddings
-│   ├── prompt.py          # System prompt for the chatbot
-│
-├── templates/
-│   └── chat.html          # Frontend UI
-│
-├── app.py                 # Flask application
-├── storeindex.py          # Indexing PDFs into Pinecone
-├── requirements.txt
-├── .gitignore
-├── README.md
+storeindex.py
+Script to process PDFs and store embeddings in Pinecone
 
-🧠 Tech Stack
+requirements.txt
+Project dependencies
+
+Technology Stack
 
 Python 3.10
-
 LangChain
-
-Pinecone (Vector Database)
-
+Pinecone Vector Database
 HuggingFace Transformers
-
 Sentence Transformers
-
 Flask
+HTML and CSS
 
-HTML/CSS
+How the System Works
 
-⚙️ Setup Instructions
+Medical PDF documents are loaded and processed
+Documents are split into smaller chunks
+Embeddings are generated using a sentence-transformer model
+Embeddings are stored in Pinecone for fast retrieval
+User queries are matched against stored vectors
+Relevant document chunks are passed to the language model
+The chatbot generates a context-aware response
 
-1️⃣ Clone the Repository
+Setup Requirements
 
-git clone https://github.com/your-username/Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask.git
-cd Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask
+Python 3.10 environment
+Pinecone account and API key
+Internet connection for model downloads
 
-2️⃣ Create & Activate Conda Environment
+Environment Variables
 
-conda create -n medibot310 python=3.10 -y
+The application requires environment variables for Pinecone and model configuration.
+These variables are stored in a .env file which is excluded from version control.
 
-conda activate medibot310
+Running the Application
 
-3️⃣ Install Dependencies
+First, index the medical documents to the vector database.
+Then start the Flask application.
+Open the application in a browser to interact with the chatbot.
 
-pip install -r requirements.txt
-
-4️⃣ Environment Variables
-
-Create a .env file in the project root:
-
-PINECONE_API_KEY=your_pinecone_key_here
-
-OPENAI_API_KEY=dummy_value_not_used
-
-PINECONE_ENVIRONMENT=us-east-1
-
-PINECONE_INDEX_NAME=medical-chatbot
-
-
-⚠️ Do NOT push .env to GitHub
-
-📥 Index Medical PDFs
-
-Make sure your PDFs are inside the data/ folder.
-
-Run:
-
-python storeindex.py
-
-
-This will:
-
-Load PDFs
-
-Split into chunks
-
-Generate embeddings
-
-Store vectors in Pinecone
-
-▶️ Run the Application
-
-python app.py
-
-
-Open browser:
-
-http://127.0.0.1:8080
-
-💬 Example Questions
+Example Questions
 
 What are the symptoms of diabetes?
-
-What is abdominal ultrasound?
-
+What is an abdominal ultrasound?
 How are gallstones treated?
-
 What are abdominal wall defects?
 
-🆓 Free Usage (No OpenAI Billing)
+Free Usage
 
-Uses HuggingFace local LLM
+This project does not rely on paid OpenAI APIs.
+A HuggingFace-based local language model is used, making the chatbot free to run.
 
-No OpenAI quota required
+Security Notes
 
-No paid API calls
-
-⚠️ Notes
-
-Pinecone is used only for vector storage
-
-Flask runs in development mode
-
-Warnings about deprecations are safe to ignore
-
-🔒 Security
-
-.env is ignored
-
+Environment variables are excluded from GitHub
 API keys are never committed
+Virtual environment files are ignored
 
-Virtual environment files are excluded
+Future Enhancements
 
-📌 Future Improvements
-
-Add source citations
-
-Add chat history memory
-
-Switch Pinecone → FAISS (fully offline)
-
-Deploy to Render / Railway
-
-Dockerize the project
-
-🙌 Acknowledgements
-
-Inspired by real-world RAG architectures using LangChain and vector databases.
+Add source citations in responses
+Enable chat memory
+Replace Pinecone with FAISS for full offline mode
+Deploy the application online
+Containerize using Docker
